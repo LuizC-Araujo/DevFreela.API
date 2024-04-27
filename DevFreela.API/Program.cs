@@ -9,6 +9,16 @@ builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+// objeto igual para toda aplicação enquanto estiver inicializada
+builder.Services.AddSingleton<LifeCycleClass>(e => new LifeCycleClass { Name = "Initial Stage" });
+
+// uma instância por requisição
+// builder.Services.AddScoped<LifeCycleClass>(e => new LifeCycleClass { Name = "Initial Stage" });
+
+// uma instância por classe
+// builder.Services.AddTransient<LifeCycleClass>(e => new LifeCycleClass { Name = "Initial Stage" });
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -24,6 +34,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();
