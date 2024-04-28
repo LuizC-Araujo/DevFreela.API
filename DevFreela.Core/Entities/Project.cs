@@ -1,4 +1,6 @@
-﻿namespace DevFreela.Core.Entities
+﻿using DevFreela.Core.Enums;
+
+namespace DevFreela.Core.Entities
 {
     public class Project : BaseEntity
     {
@@ -11,6 +13,7 @@
             TotalCost = totalCost;
 
             CreatedAt = DateTime.Now;
+            Status = ProjectStatusEnum.Created;
             Comments = new List<ProjectComment>();
         }
 
