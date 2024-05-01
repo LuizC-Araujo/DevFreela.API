@@ -17,7 +17,7 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Gifet(string query)
+        public IActionResult GetAll(string query)
         {
             var projects = _projectService.GetAll(query);
 

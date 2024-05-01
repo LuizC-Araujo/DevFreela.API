@@ -17,7 +17,7 @@ namespace DevFreela.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id) 
         {
-            var user = _userService.GetById(id);
+            var user = _userService.GetUserById(id);
 
             if (user == null) return NotFound();
 
