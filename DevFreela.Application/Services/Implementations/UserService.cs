@@ -20,10 +20,12 @@ namespace DevFreela.Application.Services.Implementations
 
             _dbContext.Users.Add(newUser);
 
+            _dbContext.SaveChanges();
+
             return newUser.Id;
         }
 
-        public UserViewModel GetById(int id)
+        public UserViewModel GetUserById(int id)
         {
             var user = _dbContext.Users.SingleOrDefault(u => u.Id == id);
 
