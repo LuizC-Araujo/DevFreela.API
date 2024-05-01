@@ -37,6 +37,11 @@ namespace DevFreela.Application.Services.Implementations
         {
             var project = _dbContext.Projects.SingleOrDefault(x => x.Id == id);
 
+            if (project == null) 
+            { 
+                return; 
+            }
+
             project.Cancel();
 
             _dbContext.SaveChanges();
@@ -45,6 +50,8 @@ namespace DevFreela.Application.Services.Implementations
         public void Finished(int id)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project == null) { return; }
 
             project.Finish();
 
@@ -69,7 +76,10 @@ namespace DevFreela.Application.Services.Implementations
                 .Include(p => p.Freelancer)
                 .SingleOrDefault(p => p.Id == id);
 
-            if (project == null) return null;
+            if (project == null)
+            {
+                return null;
+            };
 
             var projectDetailViewModel = new ProjectDetailsViewModel(
                 project.Id, 
