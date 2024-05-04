@@ -17,8 +17,10 @@ builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServe
 
 builder.Services.AddControllers();
 
-builder.Services.AddMediatR(typeof(CreateProjectCommand))
-    ;
+//.NET 5
+//builder.Services.AddMediatR(typeof(CreateProjectCommand))
+builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssemblies(typeof(CreateProjectCommand).Assembly); });
+;
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
