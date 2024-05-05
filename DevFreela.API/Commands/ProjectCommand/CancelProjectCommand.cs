@@ -6,6 +6,5 @@ namespace DevFreela.API.Commands.ProjectCommand
     public class CancelProjectCommand : IRequest<int>
     {
         public int Id { get; set; }
-        public EProjectStatusEnum Status { get; set; }
     }
 }
