@@ -2,7 +2,7 @@
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 
-namespace DevFreela.API.Commands.CreateComment
+namespace DevFreela.API.Commands.ProjectCommand
 {
     public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, int>
     {
@@ -17,7 +17,7 @@ namespace DevFreela.API.Commands.CreateComment
             var comment = new ProjectComment(request.Content, request.IdProject, request.IdUser);
 
             await _dbContext.Comments.AddAsync(comment);
-            await _dbContext.SaveChangesAsync(); 
+            await _dbContext.SaveChangesAsync();
 
             return comment.Id;
         }

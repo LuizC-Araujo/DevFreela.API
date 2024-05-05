@@ -2,7 +2,7 @@
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 
-namespace DevFreela.API.Commands.CreateProject
+namespace DevFreela.API.Commands.ProjectCommand
 {
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
     {

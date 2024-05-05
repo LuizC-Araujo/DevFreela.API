@@ -1,5 +1,4 @@
-﻿using DevFreela.API.Commands.CreateComment;
-using DevFreela.API.Commands.CreateProject;
+﻿using DevFreela.API.Commands.ProjectCommand;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using MediatR;
