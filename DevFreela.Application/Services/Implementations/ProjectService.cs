@@ -22,7 +22,7 @@ namespace DevFreela.Application.Services.Implementations
 
         public int Create(NewProjectInputModel inputModel)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void CreateComment(CreateCommentInputModel inputModel)
