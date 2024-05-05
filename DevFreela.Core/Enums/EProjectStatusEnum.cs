@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Enums
 {
-    public enum ProjectStatusEnum
+    public enum EProjectStatusEnum
     {
         Created = 0,
         InProgress = 1,

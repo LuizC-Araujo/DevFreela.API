@@ -13,7 +13,7 @@ namespace DevFreela.Core.Entities
             TotalCost = totalCost;
 
             CreatedAt = DateTime.Now;
-            Status = ProjectStatusEnum.Created;
+            Status = EProjectStatusEnum.Created;
             Comments = new List<ProjectComment>();
         }
 
@@ -27,29 +27,29 @@ namespace DevFreela.Core.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime StartedAt { get; private set; }
         public DateTime FinishedAt { get; private set; }
-        public ProjectStatusEnum Status { get; set; }
+        public EProjectStatusEnum Status { get; set; }
         public List<ProjectComment> Comments { get; set; }
 
         public void Cancel()
         {
-            if (Status == ProjectStatusEnum.InProgress)
-                Status = ProjectStatusEnum.Cancelled;
+            if (Status == EProjectStatusEnum.InProgress)
+                Status = EProjectStatusEnum.Cancelled;
         }
 
         public void Finish()
         {
-            if (Status == ProjectStatusEnum.InProgress)
+            if (Status == EProjectStatusEnum.InProgress)
             {
-                Status = ProjectStatusEnum.Finished;
+                Status = EProjectStatusEnum.Finished;
                 FinishedAt = DateTime.Now;
             }      
         }
 
         public void Start()
         {
-            if (Status == ProjectStatusEnum.Created)
+            if (Status == EProjectStatusEnum.Created)
             {
-                Status = ProjectStatusEnum.InProgress;
+                Status = EProjectStatusEnum.InProgress;
                 StartedAt = DateTime.Now;
             }
         }
