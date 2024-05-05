@@ -1,6 +1,8 @@
-﻿using DevFreela.API.Models;
+﻿using DevFreela.API.Commands.UserCommands;
+using DevFreela.API.Models;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreela.API.Controllers
@@ -9,9 +11,11 @@ namespace DevFreela.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly IMediator _mediator;
+        public UsersController(IUserService userService, IMediator mediator)
         {
             _userService = userService;
+            _mediator = mediator;
         }
 
         [HttpGet("{id}")]
@@ -25,11 +29,11 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] NewUserInputModel inputModel)
+        public IActionResult Post([FromBody] CreateUserCommand command)
         {
-            var id = _userService.Create(inputModel);
+            var id = _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetById), new { id = id }, inputModel);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
         [HttpPut("{id}/login")]
