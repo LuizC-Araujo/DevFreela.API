@@ -50,21 +50,21 @@ namespace DevFreela.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id =  id }, command);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put([FromBody] UpdateProjectInputModel inputModel)
+        [HttpPut]
+        public IActionResult Update([FromBody] UpdateProjectCommand command)
         {
-            if (inputModel.Description.Length > 200)
+            if (command.Description.Length > 200)
                 return BadRequest();
 
-            _projectService.Update(inputModel);
+            _mediator.Send(command);
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id) 
+        [HttpPut("cancel")]
+        public async Task<IActionResult> Cancel(CancelProjectCommand command) 
         {
-            _projectService.Delete(id);
+            await _mediator.Send(command);
 
             return NoContent();
         }
@@ -78,20 +78,20 @@ namespace DevFreela.API.Controllers
             return NoContent();
         }
 
-        // api/projects/1/start
-        [HttpPut("{id}/start")]
-        public IActionResult Start(int id)
+        // api/projects/start
+        [HttpPut("start")]
+        public async Task<IActionResult> Start([FromBody] StartProjectCommand command)
         {
-            _projectService.Start(id);
+            await _mediator.Send(command);
 
             return NoContent();
         }
 
-        // api/projects/1/finish
-        [HttpPut("{id}/finish")]
-        public IActionResult Finish(int id)
+        // api/projects/finish
+        [HttpPut("finish")]
+        public async Task<IActionResult> Finish([FromBody] FinishProjectCommand command)
         {
-            _projectService.Finished(id);
+            await _mediator.Send(command);
 
             return NoContent();
         }
