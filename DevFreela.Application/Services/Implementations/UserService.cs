@@ -14,17 +14,6 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext = dbContext;
         }
 
-        public int Create(NewUserInputModel inputModel)
-        {
-            var newUser = new User(inputModel.FullName, inputModel.Email, inputModel.BirthDate);
-
-            _dbContext.Users.Add(newUser);
-
-            _dbContext.SaveChanges();
-
-            return newUser.Id;
-        }
-
         public UserViewModel GetUserById(int id)
         {
             var user = _dbContext.Users.SingleOrDefault(u => u.Id == id);
