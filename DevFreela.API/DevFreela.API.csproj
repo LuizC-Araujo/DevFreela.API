@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\GetAllSkills\" />
+    <Folder Include="Queries\GetUser\" />
+    <Folder Include="Queries\GetAllProjects\" />
+    <Folder Include="Queries\GetProjectById\" />
   </ItemGroup>
 
 </Project>

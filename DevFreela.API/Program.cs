@@ -26,7 +26,6 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ISkillService, SkillService>();
 
 
 // objeto igual para toda aplicação enquanto estiver inicializada
