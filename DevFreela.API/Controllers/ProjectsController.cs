@@ -1,4 +1,9 @@
-﻿using DevFreela.API.Commands.ProjectCommand;
+﻿using DevFreela.API.Commands.ProjectCommands.CancelProject;
+using DevFreela.API.Commands.ProjectCommands.CreateComment;
+using DevFreela.API.Commands.ProjectCommands.CreateProject;
+using DevFreela.API.Commands.ProjectCommands.FinishProject;
+using DevFreela.API.Commands.ProjectCommands.StartProject;
+using DevFreela.API.Commands.ProjectCommands.UpdateProject;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using MediatR;

@@ -4,7 +4,7 @@ using DevFreela.Application.Services.Implementations;
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using DevFreela.API.Commands.ProjectCommand;
+using DevFreela.API.Commands.ProjectCommands.CreateProject;
 
 var builder = WebApplication.CreateBuilder(args);
 
