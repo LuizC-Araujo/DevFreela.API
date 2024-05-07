@@ -7,16 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Query\**" />
+    <EmbeddedResource Remove="Query\**" />
+    <None Remove="Query\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DevFreela.Core\DevFreela.Core.csproj" />
     <ProjectReference Include="..\DevFreela.Infrastructure\DevFreela.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\ProjectCommands\CancelProject" />
+    <Folder Include="Commands\ProjectCommands\CreateComment" />
+    <Folder Include="Commands\ProjectCommands\CreateProject" />
+    <Folder Include="Commands\ProjectCommands\FinishProject" />
+    <Folder Include="Commands\ProjectCommands\StartProject" />
+    <Folder Include="Commands\ProjectCommands\SuspendProject" />
+    <Folder Include="Commands\ProjectCommands\UpdateProject" />
+    <Folder Include="Commands\UserCommands" />
   </ItemGroup>
 
 </Project>

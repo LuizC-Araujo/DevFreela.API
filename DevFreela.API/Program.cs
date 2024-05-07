@@ -1,6 +1,6 @@
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using DevFreela.API.Commands.ProjectCommands.CreateProject;
+using DevFreela.Application.Commands.ProjectCommands.CreateProject;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
-﻿using DevFreela.API.Commands.UserCommands;
-using DevFreela.API.Models;
-using DevFreela.API.Queries.GetUser;
+﻿using DevFreela.API.Models;
+using DevFreela.Application.Commands.UserCommands;
+using DevFreela.Application.Queries.GetUser;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

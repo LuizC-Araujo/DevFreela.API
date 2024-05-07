@@ -1,11 +1,12 @@
-﻿using DevFreela.API.Commands.ProjectCommands.CancelProject;
-using DevFreela.API.Commands.ProjectCommands.CreateComment;
-using DevFreela.API.Commands.ProjectCommands.CreateProject;
-using DevFreela.API.Commands.ProjectCommands.FinishProject;
-using DevFreela.API.Commands.ProjectCommands.StartProject;
-using DevFreela.API.Commands.ProjectCommands.UpdateProject;
-using DevFreela.API.Queries.GetAllProjects;
-using DevFreela.API.Queries.GetProjectById;
+﻿using DevFreela.Application.Commands.ProjectCommands.CancelProject;
+using DevFreela.Application.Commands.ProjectCommands.CreateComment;
+using DevFreela.Application.Commands.ProjectCommands.CreateProject;
+using DevFreela.Application.Commands.ProjectCommands.FinishProject;
+using DevFreela.Application.Commands.ProjectCommands.StartProject;
+using DevFreela.Application.Commands.ProjectCommands.SuspendProject;
+using DevFreela.Application.Commands.ProjectCommands.UpdateProject;
+using DevFreela.Application.Queries.GetAllProjects;
+using DevFreela.Application.Queries.GetProjectById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,6 +79,17 @@ namespace DevFreela.API.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("{id}/suspend")]
+        public async Task<IActionResult> Suspend(int id)
+        {
+            var command = new SuspendProjectCommand(id);
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+
 
         [HttpPost("{id}/comments")]
         public async Task<IActionResult> PostComment(int id, [FromBody] CreateCommentCommand command) 
