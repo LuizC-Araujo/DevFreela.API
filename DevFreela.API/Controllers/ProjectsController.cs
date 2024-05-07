@@ -5,6 +5,7 @@ using DevFreela.API.Commands.ProjectCommands.FinishProject;
 using DevFreela.API.Commands.ProjectCommands.StartProject;
 using DevFreela.API.Commands.ProjectCommands.UpdateProject;
 using DevFreela.API.Queries.GetAllProjects;
+using DevFreela.API.Queries.GetProjectById;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using MediatR;
@@ -37,7 +38,9 @@ namespace DevFreela.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var project = _projectService.GetById(id);
+            var query = new GetProjectByIdQuery(id);
+
+            var project = _mediator.Send(query.Id);
 
             if (project == null)
             {
