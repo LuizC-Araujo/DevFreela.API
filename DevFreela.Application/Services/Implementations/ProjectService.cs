@@ -19,16 +19,6 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext = dbContext;
             _connectionString = configuration.GetConnectionString("DevFreelaCs");
         }
-        public List<ProjectViewModel> GetAll(string query)
-        {
-            var projects = _dbContext.Projects;
-
-            var projectsViewModel = projects
-                .Select(x => new ProjectViewModel(x.Id, x.Title, x.CreatedAt))
-                .ToList();
-
-            return projectsViewModel;
-        }
 
         public ProjectDetailsViewModel GetById(int id)
         {
