@@ -1,9 +1,5 @@
-using DevFreela.API.Models;
-using DevFreela.Application.Services.Interfaces;
-using DevFreela.Application.Services.Implementations;
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using MediatR;
 using DevFreela.API.Commands.ProjectCommands.CreateProject;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +20,7 @@ builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssemblies(typeof(C
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IUserService, UserService>();
 
 
 // objeto igual para toda aplicação enquanto estiver inicializada

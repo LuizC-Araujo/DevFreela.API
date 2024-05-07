@@ -6,8 +6,6 @@ using DevFreela.API.Commands.ProjectCommands.StartProject;
 using DevFreela.API.Commands.ProjectCommands.UpdateProject;
 using DevFreela.API.Queries.GetAllProjects;
 using DevFreela.API.Queries.GetProjectById;
-using DevFreela.Application.InputModels;
-using DevFreela.Application.Services.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
