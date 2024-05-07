@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevFreela.API.Commands.ProjectCommand
+namespace DevFreela.API.Commands.ProjectCommands.UpdateProject
 {
     public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, Unit>
     {

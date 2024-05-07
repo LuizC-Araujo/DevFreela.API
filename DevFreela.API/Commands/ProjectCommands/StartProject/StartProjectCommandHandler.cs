@@ -2,22 +2,22 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevFreela.API.Commands.ProjectCommand
+namespace DevFreela.API.Commands.ProjectCommands.StartProject
 {
-    public class CancelProjectCommandHandler : IRequestHandler<CancelProjectCommand, Unit>
+    public class StartProjectCommandHandler : IRequestHandler<StartProjectCommand, Unit>
     {
         private readonly DevFreelaDbContext _dbContext;
-        public CancelProjectCommandHandler(DevFreelaDbContext dbContext)
+        public StartProjectCommandHandler(DevFreelaDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task<Unit> Handle(CancelProjectCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(StartProjectCommand request, CancellationToken cancellationToken)
         {
             var project = await _dbContext.Projects.FirstOrDefaultAsync(x => x.Id == request.Id);
 
             if (project == null) return Unit.Value;
 
-            project.Cancel();
+            project.Start();
             await _dbContext.SaveChangesAsync();
 
             return Unit.Value;

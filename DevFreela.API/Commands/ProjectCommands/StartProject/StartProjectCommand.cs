@@ -1,7 +1,7 @@
 ﻿using DevFreela.Core.Enums;
 using MediatR;
 
-namespace DevFreela.API.Commands.ProjectCommand
+namespace DevFreela.API.Commands.ProjectCommands.StartProject
 {
     public class StartProjectCommand : IRequest<Unit>
     {

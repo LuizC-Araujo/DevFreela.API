@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DevFreela.API.Commands.ProjectCommand
+namespace DevFreela.API.Commands.ProjectCommands.CreateComment
 {
     public class CreateCommentCommand : IRequest<Unit>
     {
