@@ -55,8 +55,8 @@ namespace DevFreela.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id =  id }, command);
         }
 
-        [HttpPut]
-        public IActionResult Update([FromBody] UpdateProjectCommand command)
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] UpdateProjectCommand command)
         {
             if (command.Description.Length > 200)
                 return BadRequest();
@@ -66,15 +66,16 @@ namespace DevFreela.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("cancel")]
-        public async Task<IActionResult> Cancel(CancelProjectCommand command) 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Cancel(int id) 
         {
+            var command = new CancelProjectCommand(id);
+
             await _mediator.Send(command);
 
             return NoContent();
         }
 
-        // api/projects/1/comments
         [HttpPost("{id}/comments")]
         public async Task<IActionResult> PostComment(int id, [FromBody] CreateCommentCommand command) 
         {
@@ -83,19 +84,23 @@ namespace DevFreela.API.Controllers
             return NoContent();
         }
 
-        // api/projects/start
-        [HttpPut("start")]
-        public async Task<IActionResult> Start([FromBody] StartProjectCommand command)
+        // api/projects/1/start
+        [HttpPut("{id}/start")]
+        public async Task<IActionResult> Start(int id)
         {
+            var command = new StartProjectCommand(id);
+
             await _mediator.Send(command);
 
             return NoContent();
         }
 
-        // api/projects/finish
-        [HttpPut("finish")]
-        public async Task<IActionResult> Finish([FromBody] FinishProjectCommand command)
+        // api/projects/1/finish
+        [HttpPut("{1}finish")]
+        public async Task<IActionResult> Finish(int id)
         {
+            var command = new FinishProjectCommand(id);
+
             await _mediator.Send(command);
 
             return NoContent();
