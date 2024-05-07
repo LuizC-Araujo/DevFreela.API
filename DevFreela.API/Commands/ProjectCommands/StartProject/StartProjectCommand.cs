@@ -5,6 +5,11 @@ namespace DevFreela.API.Commands.ProjectCommands.StartProject
 {
     public class StartProjectCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public StartProjectCommand(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; private set; }
     }
 }

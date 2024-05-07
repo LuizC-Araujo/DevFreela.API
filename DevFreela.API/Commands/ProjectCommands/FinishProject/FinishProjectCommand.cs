@@ -5,6 +5,11 @@ namespace DevFreela.API.Commands.ProjectCommands.FinishProject
 {
     public class FinishProjectCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public FinishProjectCommand(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; private set; }
     }
 }

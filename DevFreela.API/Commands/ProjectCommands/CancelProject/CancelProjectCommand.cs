@@ -5,6 +5,11 @@ namespace DevFreela.API.Commands.ProjectCommands.CancelProject
 {
     public class CancelProjectCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public CancelProjectCommand(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; private set; }
     }
 }
