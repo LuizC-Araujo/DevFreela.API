@@ -16,21 +16,21 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id) 
+        public async Task<IActionResult> GetById(int id) 
         {
             var query = new GetUserByIdQuery(id);
 
-            var user = _mediator.Send(query.Id);
+            var user = await _mediator.Send(query);
 
-            if (user == null) return NotFound();
+            if (user.FullName == null && user.Email == null) return NotFound("Usuário não encontrado!");
 
             return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateUserCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
-            var id = _mediator.Send(command);
+            var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id }, command);
         }

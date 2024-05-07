@@ -34,8 +34,14 @@ namespace DevFreela.Core.Entities
 
         public void Cancel()
         {
-            if (Status == EProjectStatusEnum.InProgress)
+            if (Status == EProjectStatusEnum.InProgress || Status == EProjectStatusEnum.Created)
                 Status = EProjectStatusEnum.Cancelled;
+        }
+
+        public void Suspend()
+        {
+            if (Status == EProjectStatusEnum.InProgress || Status == EProjectStatusEnum.Created)
+                Status = EProjectStatusEnum.Suspended;
         }
 
         public void Finish()
@@ -49,7 +55,7 @@ namespace DevFreela.Core.Entities
 
         public void Start()
         {
-            if (Status == EProjectStatusEnum.Created)
+            if (Status == EProjectStatusEnum.Created || Status == EProjectStatusEnum.Suspended)
             {
                 Status = EProjectStatusEnum.InProgress;
                 StartedAt = DateTime.Now;

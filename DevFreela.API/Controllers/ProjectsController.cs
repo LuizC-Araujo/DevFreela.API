@@ -21,23 +21,23 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var query = new GetAllProjectsQuery();
 
-            var projects = _mediator.Send(query);
+            var projects = await _mediator.Send(query);
 
             return Ok(projects);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var query = new GetProjectByIdQuery(id);
 
-            var project = _mediator.Send(query.Id);
+            var project = await _mediator.Send(query);
 
-            if (project == null)
+            if (project.Id == 0)
             {
                 return NotFound();
             }
@@ -46,7 +46,7 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateProjectCommand command) 
+        public async Task<IActionResult> Post([FromBody] CreateProjectCommand command)
         {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (command.Title.Length > 50)
@@ -55,23 +55,21 @@ namespace DevFreela.API.Controllers
 
             var id = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetById), new { id =  id }, command);
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] UpdateProjectCommand command)
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateProjectCommand command)
         {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (command.Description.Length > 200)
                 return BadRequest();
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-            _mediator.Send(command);
+            await _mediator.Send(command);
 
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}/cancel")]
         public async Task<IActionResult> Cancel(int id) 
         {
             var command = new CancelProjectCommand(id);
@@ -101,7 +99,7 @@ namespace DevFreela.API.Controllers
         }
 
         // api/projects/1/finish
-        [HttpPut("{1}finish")]
+        [HttpPut("{id}/finish")]
         public async Task<IActionResult> Finish(int id)
         {
             var command = new FinishProjectCommand(id);
