@@ -4,7 +4,9 @@ namespace DevFreela.Core.Entities
 {
     public class Project : BaseEntity
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Project(string title, string description, int idClient, int idFreelancer, decimal totalCost)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Title = title;
             Description = description;
@@ -17,8 +19,8 @@ namespace DevFreela.Core.Entities
             Comments = new List<ProjectComment>();
         }
 
-        public string Title { get; private set; }
-        public string Description { get; private set; }
+        public string? Title { get; private set; }
+        public string? Description { get; private set; }
         public int IdClient { get; private set; }
         public User Client { get; set; }
         public int IdFreelancer { get; private set; }

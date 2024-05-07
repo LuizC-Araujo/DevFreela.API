@@ -22,7 +22,7 @@ namespace DevFreela.API.Queries.GetProjectById
 
             if (project == null)
             {
-                return null;
+                return new ProjectDetailsViewModel();
             };
 
             var projectDetailViewModel = new ProjectDetailsViewModel(

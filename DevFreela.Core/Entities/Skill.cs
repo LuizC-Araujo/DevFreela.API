@@ -8,7 +8,7 @@
             CreatedAt = DateTime.Now;
         }
 
-        public string Description { get; private set; }
+        public string? Description { get; private set; }
         public DateTime CreatedAt { get; private set; }
     }
 }

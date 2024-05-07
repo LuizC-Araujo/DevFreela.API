@@ -17,7 +17,7 @@ namespace DevFreela.API.Queries.GetUser
         {
             var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == request.Id);
 
-            if (user == null) return null;
+            if (user == null) return new UserViewModel();
 
             var userViewModel = new UserViewModel(user.FullName, user.Email);
 

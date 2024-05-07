@@ -47,9 +47,11 @@ namespace DevFreela.API.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateProjectCommand command) 
-        { 
+        {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (command.Title.Length > 50)
                 return BadRequest();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             var id = await _mediator.Send(command);
 
@@ -59,8 +61,10 @@ namespace DevFreela.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] UpdateProjectCommand command)
         {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (command.Description.Length > 200)
                 return BadRequest();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             _mediator.Send(command);
 
