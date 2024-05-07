@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Queries\GetUser\" />
-    <Folder Include="Queries\GetAllProjects\" />
     <Folder Include="Queries\GetProjectById\" />
   </ItemGroup>
 

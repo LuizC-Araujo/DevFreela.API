@@ -4,6 +4,7 @@ using DevFreela.API.Commands.ProjectCommands.CreateProject;
 using DevFreela.API.Commands.ProjectCommands.FinishProject;
 using DevFreela.API.Commands.ProjectCommands.StartProject;
 using DevFreela.API.Commands.ProjectCommands.UpdateProject;
+using DevFreela.API.Queries.GetAllProjects;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using MediatR;
@@ -24,9 +25,11 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(string query)
+        public IActionResult GetAll()
         {
-            var projects = _projectService.GetAll(query);
+            var query = new GetAllProjectsQuery();
+
+            var projects = _mediator.Send(query);
 
             return Ok(projects);
         }
