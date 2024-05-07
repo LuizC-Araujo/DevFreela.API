@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DevFreela.API.Commands.ProjectCommand
 {
-    public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, int>
+    public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, Unit>
     {
         private readonly DevFreelaDbContext _dbContext;
         public CreateCommentCommandHandler(DevFreelaDbContext dbContext)
@@ -12,14 +12,14 @@ namespace DevFreela.API.Commands.ProjectCommand
             _dbContext = dbContext;
         }
 
-        public async Task<int> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
         {
             var comment = new ProjectComment(request.Content, request.IdProject, request.IdUser);
 
             await _dbContext.Comments.AddAsync(comment);
             await _dbContext.SaveChangesAsync();
 
-            return comment.Id;
+            return Unit.Value;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DevFreela.API.Commands.ProjectCommand
 {
-    public class UpdateProjectCommand : IRequest<int>
+    public class UpdateProjectCommand : IRequest<Unit>
     {
         public int Id { get; set; }
         public string Title { get; set; }
