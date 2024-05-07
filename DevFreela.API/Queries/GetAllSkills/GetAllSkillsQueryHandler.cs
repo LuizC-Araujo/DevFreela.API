@@ -1,6 +1,7 @@
 ﻿using DevFreela.Application.ViewModels;
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.API.Queries.GetAllSkills
 {
@@ -39,9 +40,9 @@ namespace DevFreela.API.Queries.GetAllSkills
         {
             var skills = _dbContext.Skills;
 
-            var skilldViewModel = skills
+            var skilldViewModel = await skills
                 .Select(s => new SkillViewModel(s.Id, s.Description))
-                .ToList();
+                .ToListAsync();
 
             return skilldViewModel;
         }
