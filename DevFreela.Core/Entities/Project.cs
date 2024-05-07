@@ -40,7 +40,7 @@ namespace DevFreela.Core.Entities
 
         public void Suspend()
         {
-            if (Status == EProjectStatusEnum.InProgress || Status == EProjectStatusEnum.Created)
+            if (Status == EProjectStatusEnum.InProgress || Status == EProjectStatusEnum.Created || Status == EProjectStatusEnum.Cancelled)
                 Status = EProjectStatusEnum.Suspended;
         }
 
