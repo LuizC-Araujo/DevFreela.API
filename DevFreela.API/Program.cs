@@ -15,6 +15,7 @@ builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServe
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
 
