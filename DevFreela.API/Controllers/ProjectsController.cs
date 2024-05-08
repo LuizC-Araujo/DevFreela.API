@@ -62,6 +62,8 @@ namespace DevFreela.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(UpdateProjectCommand command)
         {
+            if (String.IsNullOrEmpty(command.Description)) return NoContent();
+
             if (command.Description.Length > 200)
                 return BadRequest();
 
