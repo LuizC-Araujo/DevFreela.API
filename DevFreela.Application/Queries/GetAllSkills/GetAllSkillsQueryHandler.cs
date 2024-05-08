@@ -1,50 +1,38 @@
-﻿using DevFreela.Application.ViewModels;
-using DevFreela.Infrastructure.Persistence;
+﻿using DevFreela.Core.DTOs;
+using DevFreela.Core.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.Application.Queries.GetAllSkills
 {
-    public class GetAllSkillsQueryHandler : IRequestHandler<GetAllSkillsQuery, List<SkillViewModel>>
+    public class GetAllSkillsQueryHandler : IRequestHandler<GetAllSkillsQuery, List<SkillDTO>>
     {
+        private readonly ISkillRepository _skillRepository;
+        public GetAllSkillsQueryHandler(ISkillRepository skillRepository)
+        {
+            _skillRepository = skillRepository;
+        }
 
-        //using dapper
-        //private readonly string _connectionString;
-        //public GetAllSkillsQueryHandler(IConfiguration configuration)
+        public async Task<List<SkillDTO>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
+        {
+            return await _skillRepository.GetAll();
+        }
+
+        //using EF Core
+        //private readonly DevFreelaDbContext _dbContext;
+        //public GetAllSkillsQueryHandler(DevFreelaDbContext dbContext)
         //{
-        //    _connectionString = configuration.GetConnectionString("DevFreelaCs");
+        //    _dbContext = dbContext;
         //}
 
         //public async Task<List<SkillViewModel>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
         //{
-        //    using (var sqlConnection = new SqlConnection(_connectionString))
-        //    {
-        //        sqlConnection.Open();
+        //    var skills = _dbContext.Skills;
 
-        //        var script = "SELECT Id, Desciption FROM Skills";
+        //    var skilldViewModel = await skills
+        //        .Select(s => new SkillViewModel(s.Id, s.Description))
+        //        .ToListAsync();
 
-        //        var skills = await sqlConnection.QueryAsync<SkillViewModel>(script);
-
-        //        return skills.ToList();
-        //    }
+        //    return skilldViewModel;
         //}
-
-        //using EF Core
-        private readonly DevFreelaDbContext _dbContext;
-        public GetAllSkillsQueryHandler(DevFreelaDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        public async Task<List<SkillViewModel>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
-        {
-            var skills = _dbContext.Skills;
-
-            var skilldViewModel = await skills
-                .Select(s => new SkillViewModel(s.Id, s.Description))
-                .ToListAsync();
-
-            return skilldViewModel;
-        }
     }
 }
