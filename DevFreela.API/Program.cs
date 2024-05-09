@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using DevFreela.Application.Commands.ProjectCommands.CreateProject;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence.Repositories;
+using FluentValidation.AspNetCore;
+using DevFreela.Application.Validators;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +20,11 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+
 builder.Services.AddControllers();
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
 
 //.NET 5
 //builder.Services.AddMediatR(typeof(CreateProjectCommand))
