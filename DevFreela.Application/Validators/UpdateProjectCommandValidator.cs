@@ -14,10 +14,13 @@ namespace DevFreela.Application.Validators
                 .GreaterThan(0).WithMessage("O id deve ser maior que 0");
 
             RuleFor(p => p.Title)
-                .Length(1, 30).WithMessage("O título deve ter entre {MinLength} e {MaxLength}");
+                .MaximumLength(30).WithMessage("O título deve ter no máximo {MaxLength} caracteres");
 
             RuleFor(p => p.Description)
-                .Length(1, 255).WithMessage("A descrição deve ter entre {MinLength} e {MaxLength}");
+                .MaximumLength(255).WithMessage("A descrição deve ter no máximo {MaxLength} caracteres");
+
+            RuleFor(p => p.TotalCost)
+                .GreaterThan(0);
         }
     }
 }

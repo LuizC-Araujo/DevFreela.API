@@ -16,8 +16,10 @@ namespace DevFreela.Application.Commands.ProjectCommands.UpdateProject
 
             request.Title ??= project.Title;
             request.Description ??= project.Description;  
+            request.TotalCost ??= project.TotalCost;
+            
 
-            project.Update(request.Title, request.Description, request.TotalCost);
+            project.Update(request.Title, request.Description, (decimal) request.TotalCost);
 
             await _projectRepository.SaveChangesAsync();
 
