@@ -6,6 +6,7 @@ using DevFreela.Infrastructure.Persistence.Repositories;
 using FluentValidation.AspNetCore;
 using DevFreela.Application.Validators;
 using FluentValidation;
+//using DevFreela.API.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
+//builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)));
 builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
