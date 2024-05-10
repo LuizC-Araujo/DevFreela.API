@@ -39,7 +39,7 @@ namespace DevFreela.Infrastructure.AuthServices
         {
             var issuer = _configuration["Jwt:Issuer"];
             var audience = _configuration["Jwt:Audience"];
-            var key = _configuration["key"];
+            var key = _configuration["Jwt:Key"];
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
