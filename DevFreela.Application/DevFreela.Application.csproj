@@ -34,7 +34,6 @@
     <Folder Include="Commands\ProjectCommands\StartProject" />
     <Folder Include="Commands\ProjectCommands\SuspendProject" />
     <Folder Include="Commands\ProjectCommands\UpdateProject" />
-    <Folder Include="Commands\UserCommands" />
   </ItemGroup>
 
 </Project>

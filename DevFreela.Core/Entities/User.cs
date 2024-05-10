@@ -22,8 +22,8 @@
         public DateTime BirthDate { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public bool Active { get; private set; }
-        public string Password { get; private set; }
-        public string Role { get; private set; }
+        public string? Password { get; private set; }
+        public string? Role { get; private set; }
         public List<UserSkill> Skills { get; private set; }
         public List<Project> OwnedProjects { get; private set; }
         public List<Project> FreelanceProjects { get; private set; }
