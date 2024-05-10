@@ -7,17 +7,13 @@ namespace DevFreela.Application.Commands.ProjectCommands.CreateProject
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
     {
         private readonly IProjectRepository _projectRepository;
-        private readonly IUserRepository _userRepository;
-        public CreateProjectCommandHandler(IProjectRepository projectRepository, IUserRepository userRepository)
+        public CreateProjectCommandHandler(IProjectRepository projectRepository)
         {
             _projectRepository = projectRepository;
-            _userRepository = userRepository;
-
         }
 
         public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
-
             var project = new Project(request.Title, request.Description, request.ClientId, request.TotalCost);
 
             await _projectRepository.AddAsync(project);
