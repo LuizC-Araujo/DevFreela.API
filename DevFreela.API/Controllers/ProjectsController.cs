@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreela.API.Controllers
 {
+    [ApiController]
     [Route("api/projects")]
     public class ProjectsController : ControllerBase
     {
@@ -49,16 +50,6 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateProjectCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                var messages = ModelState
-                    .SelectMany(m => m.Value.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                return BadRequest(messages);
-            }
-
             var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
@@ -67,16 +58,6 @@ namespace DevFreela.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(UpdateProjectCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                var messages = ModelState
-                    .SelectMany(m => m.Value.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                return BadRequest(messages);
-            }
-
             await _mediator.Send(command);
 
             return NoContent();

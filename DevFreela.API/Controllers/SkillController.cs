@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreela.Application.Controllers
 {
+    [ApiController]
     [Route("api/skills")]
     public class SkillController : ControllerBase
     {

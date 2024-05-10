@@ -22,9 +22,9 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 builder.Services.AddControllers();
-
 builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProjectCommandValidator>();
 
 //.NET 5
 //builder.Services.AddMediatR(typeof(CreateProjectCommand))
