@@ -19,12 +19,7 @@ namespace DevFreela.Application.Validators
                 .WithMessage("A descrição deve ser preenchida")
                 .Length(20, 255).WithMessage("A descrição deve ter entre {MinLength} e {MaxLength}");
 
-            RuleFor(p => p.IdFreelancer)
-                .NotEmpty()
-                .NotNull().WithMessage("O id do freelancer deve ser preenchido")
-                .GreaterThan(0).WithMessage("O id do freelancer deve ser maior que 0");
-
-            RuleFor(p => p.IdClient)
+            RuleFor(p => p.ClientId )
                 .NotEmpty()
                 .NotNull().WithMessage("O id do clienter deve ser preenchido")
                 .GreaterThan(0).WithMessage("O id do cliente deve ser maior que 0");
