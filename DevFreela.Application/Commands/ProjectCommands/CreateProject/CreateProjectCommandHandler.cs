@@ -14,7 +14,7 @@ namespace DevFreela.Application.Commands.ProjectCommands.CreateProject
 
         public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = new Project(request.Title, request.Description, request.ClientId, request.TotalCost);
+            var project = new Project(request.Title, request.Description, request.IdClient, request.IdFreelancer, request.TotalCost);
 
             await _projectRepository.AddAsync(project);
 

@@ -5,12 +5,13 @@ namespace DevFreela.Core.Entities
     public class Project : BaseEntity
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public Project(string title, string description, int idClient, decimal totalCost)
+        public Project(string title, string description, int idClient, int idFreelancer, decimal totalCost)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Title = title;
             Description = description;
             IdClient = idClient;
+            IdFreelancer = idFreelancer;
             TotalCost = totalCost;
 
             CreatedAt = DateTime.Now;
