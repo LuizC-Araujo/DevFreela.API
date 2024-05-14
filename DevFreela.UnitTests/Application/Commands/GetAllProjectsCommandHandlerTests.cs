@@ -27,7 +27,7 @@ namespace DevFreela.UnitTests.Application.Commands
             var getAllProjectsQueryHandler = new GetAllProjectsQueryHandler(projectRepository.Object);
 
             //act
-           
+            var projectViewModelList = await getAllProjectsQueryHandler.Handle(getAllProjectsQuery, new CancellationToken());
 
             //assert
 
