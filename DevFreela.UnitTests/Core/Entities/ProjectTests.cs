@@ -22,7 +22,7 @@ namespace DevFreela.UnitTests.Core.Entities
             project.Start();
 
             Assert.Equal(EProjectStatusEnum.InProgress, project.Status);
-            Assert.NotNull(project.StartedAt);
+
             Assert.Equal(project.StartedAt.ToShortDateString(), DateTime.Now.ToShortDateString());
             
         }
