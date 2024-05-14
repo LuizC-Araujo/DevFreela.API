@@ -20,17 +20,21 @@ namespace DevFreela.UnitTests.Application.Commands
                 new("Nome do Teste 3", "Descrição 4", 1, 2, 30000)
             };
 
-            var projectRepository = new Mock<IProjectRepository>();
-            projectRepository.Setup(pr => pr.GetAllAsync().Result).Returns(projects);
+            var projectRepositoryMock = new Mock<IProjectRepository>();
+            projectRepositoryMock.Setup(pr => pr.GetAllAsync().Result).Returns(projects);
 
             var getAllProjectsQuery = new GetAllProjectsQuery();
-            var getAllProjectsQueryHandler = new GetAllProjectsQueryHandler(projectRepository.Object);
+            var getAllProjectsQueryHandler = new GetAllProjectsQueryHandler(projectRepositoryMock.Object);
 
             //act
             var projectViewModelList = await getAllProjectsQueryHandler.Handle(getAllProjectsQuery, new CancellationToken());
 
             //assert
+            Assert.NotNull(projectViewModelList);
+            Assert.NotEmpty(projectViewModelList);
+            Assert.Equal(projects.Count, projectViewModelList.Count);
 
+            projectRepositoryMock.Verify(pr => pr.GetAllAsync().Result, Times.Once);
         }
     }
 }
