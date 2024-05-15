@@ -11,7 +11,7 @@ namespace DevFreela.UnitTests.Application.Commands
         public async Task InputaDataIsOk_Executed_ReturnProjectId()
         {
             // arrange
-            var projectRepository = new Mock<IProjectRepository>();
+            var projectRepositoryMock = new Mock<IProjectRepository>();
 
             var createProjectCommand = new CreateProjectCommand
             {
@@ -22,7 +22,7 @@ namespace DevFreela.UnitTests.Application.Commands
                 TotalCost = 5000
             };
 
-            var createProjectCommandHandler = new CreateProjectCommandHandler(projectRepository.Object);
+            var createProjectCommandHandler = new CreateProjectCommandHandler(projectRepositoryMock.Object);
 
             // act
             var id = await createProjectCommandHandler.Handle(createProjectCommand, new CancellationToken());
@@ -30,7 +30,7 @@ namespace DevFreela.UnitTests.Application.Commands
             // assert
             Assert.True(id >= 0);
 
-            projectRepository.Verify(pr => pr.AddAsync(It.IsAny<Project>()), Times.Once);
+            projectRepositoryMock.Verify(pr => pr.AddAsync(It.IsAny<Project>()), Times.Once);
         }
     }
 }
