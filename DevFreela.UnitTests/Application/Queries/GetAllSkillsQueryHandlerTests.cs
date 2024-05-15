@@ -1,6 +1,4 @@
-﻿using DevFreela.Application.Queries.GetAllProjects;
-using DevFreela.Application.Queries.GetAllSkills;
-using DevFreela.Core.DTOs;
+﻿using DevFreela.Application.Queries.GetAllSkills;
 using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
 using Moq;
@@ -35,6 +33,8 @@ namespace DevFreela.UnitTests.Application.Queries
             Assert.NotNull(skillList);
             Assert.NotEmpty(skillList);
             Assert.Equal(skills.Count, skillList.Count);
+
+            skillRepositoryMock.Verify(p => p.GetAllAsync(), Times.Once);
         }
     }
 }
