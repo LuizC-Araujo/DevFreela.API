@@ -1,4 +1,5 @@
 ﻿using DevFreela.Application.Commands.ProjectCommands.CreateProject;
+using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
 using Moq;
 
@@ -27,6 +28,9 @@ namespace DevFreela.UnitTests.Application.Commands
             var id = await createProjectCommandHandler.Handle(createProjectCommand, new CancellationToken());
 
             // assert
+            Assert.True(id >= 0);
+
+            projectRepository.Verify(pr => pr.AddAsync(It.IsAny<Project>()), Times.Once);
         }
     }
 }
